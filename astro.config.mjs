@@ -4,8 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://well-foundation.github.io",
+  base: "/well-foundation/",
   vite: {
     plugins: [tailwindcss()],
   },
-  base: "https://wellonline.github.io/well-foundation/",
 });

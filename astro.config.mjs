@@ -6,6 +6,6 @@ export default defineConfig({
   site: "https://well-foundation.github.io",
   vite: {
     plugins: [tailwindcss()],
-
   },
+  base: "https://github.com/wellonline/well-foundation",
 });

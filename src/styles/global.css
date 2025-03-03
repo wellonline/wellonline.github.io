@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url('/fonts/noto-sans-thai-thai-700-normal.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@theme {
+  --color-btn-primary: #27A0F7;
+  --font-noto-sans-thai: 'Noto Sans Thai', sans-serif;
+}

@@ -7,5 +7,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  base: "https://github.com/wellonline/well-foundation",
+  base: "https://wellonline.github.io/well-foundation/",
 });

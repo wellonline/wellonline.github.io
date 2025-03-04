@@ -71,6 +71,7 @@ import Layout from "../layouts/Layout.astro";
 
     <script>
       const headings = document.querySelectorAll(".slogan");
+      const comingSoonImage = document.querySelector("img[alt='Coming Soon']");
       let current = 0;
       headings[current].classList.add("active");
 
@@ -80,17 +81,15 @@ import Layout from "../layouts/Layout.astro";
         if (current >= headings.length) {
           current = headings.length - 1;
           headings[current].classList.add("active");
-          document
-            .querySelector("img[alt='Coming Soon']")
-            .classList.add("active");
+          if (comingSoonImage) {
+            comingSoonImage.classList.add("active");
+          }
           return;
         }
         setTimeout(() => {
           headings[current].classList.add("active");
-          if (current === headings.length - 1) {
-            document
-              .querySelector("img[alt='Coming Soon']")
-              .classList.add("active");
+          if (current === headings.length - 1 && comingSoonImage) {
+            comingSoonImage.classList.add("active");
           }
           setTimeout(showNext, 3000);
         }, 2000);

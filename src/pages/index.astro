@@ -6,11 +6,14 @@ import Layout from "../layouts/Layout.astro";
 <style>
   .slogan {
     opacity: 0;
-    transition: opacity 3s;
+    transition: opacity 1s;
     position: absolute;
   }
   .slogan.active {
     opacity: 1;
+  }
+  .slogan.inactive {
+    opacity: 0;
   }
   .hidden {
     display: none;
@@ -76,9 +79,11 @@ import Layout from "../layouts/Layout.astro";
 
       function showNext() {
         headings[current].classList.remove("active");
+        headings[current].classList.add("inactive");
         current++;
         if (current >= headings.length) {
           current = headings.length - 1;
+          headings[current].classList.remove("inactive");
           headings[current].classList.add("active");
           if (comingSoonImage) {
             comingSoonImage.classList.add("active");
@@ -86,16 +91,17 @@ import Layout from "../layouts/Layout.astro";
           return;
         }
         setTimeout(() => {
+          headings[current].classList.remove("inactive");
           headings[current].classList.add("active");
           if (current === headings.length - 1 && comingSoonImage) {
             comingSoonImage.classList.add("active");
           }
-          setTimeout(showNext, 3000);
-        }, 2000);
+          setTimeout(showNext, 2000); // Changed from 3000 to 5000
+        }, 2000); // Changed from 2000 to 5000
       }
 
       headings[current].classList.add("active"); // Show the first slogan immediately
-      setTimeout(showNext, 2000); // Changed from 3000 to 2000
+      setTimeout(showNext, 3000); // Changed from 2000 to 5000
     </script>
   </main>
 </Layout>

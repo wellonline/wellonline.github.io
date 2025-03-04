@@ -8,6 +8,7 @@ import Layout from "../layouts/Layout.astro";
     opacity: 0;
     transition: opacity 2s;
     position: absolute;
+    margin-left: 10px; /* Add this line */
   }
   .slogan.active {
     opacity: 1;
@@ -26,6 +27,15 @@ import Layout from "../layouts/Layout.astro";
   .coming-soon.active {
     opacity: 1;
   }
+  main {
+    display: grid;
+    place-items: center;
+  }
+  slogan {
+    display: grid;
+    place-items: center;
+    margin-top: 4rem;
+  }
 </style>
 
 <Layout title="Well เพื่อนรักษาใจ">
@@ -35,7 +45,6 @@ import Layout from "../layouts/Layout.astro";
       url('/images/bg.png') no-repeat top;
       background-size: cover;
     "
-    class="flex flex-col items-center"
   >
     <img
       src="/images/slogan.png"
@@ -43,7 +52,7 @@ import Layout from "../layouts/Layout.astro";
       class="w-52 md:w-80 h-auto mt-52"
     />
 
-    <section class="flex flex-col items-center mt-16">
+    <slogan>
       <p class="text-lg font-normal text-blue slogan">
         วันที่คุณรู้สึก<span class="font-semibold text-5xl">”ท้อแท้”</span>
       </p>
@@ -59,7 +68,7 @@ import Layout from "../layouts/Layout.astro";
       <p class="text-lg font-normal text-blue slogan">
         ให้เราอยู่ <span class="font-semibold text-5xl">เคียงข้างคุณ :)</span>
       </p>
-    </section>
+    </slogan>
 
     <button
       class="mt-24 bg-btn-primary text-white font-semibold px-8 py-4 rounded-full"
@@ -96,14 +105,14 @@ import Layout from "../layouts/Layout.astro";
           if (current === headings.length - 1 && comingSoonImage) {
             comingSoonImage.classList.add("active");
           }
-          setTimeout(showNext, 2000); // Changed from 3000 to 2000
-        }, 2000); // Changed from 2000 to 2000
+          setTimeout(showNext, 2000);
+        }, 2000);
       }
 
       setTimeout(() => {
-        headings[current].classList.add("active"); // Show the first slogan after 2 seconds
-        setTimeout(showNext, 3000); // Changed from 2000 to 3000
-      }, 2000); // Delay the first slogan activation by 2 seconds
+        headings[current].classList.add("active");
+        setTimeout(showNext, 3000);
+      }, 2000);
     </script>
   </main>
 </Layout>

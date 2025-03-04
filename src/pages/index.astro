@@ -3,6 +3,28 @@ import "../styles/global.css";
 import Layout from "../layouts/Layout.astro";
 ---
 
+<style>
+  .slogan {
+    opacity: 0;
+    transition: opacity 3s;
+    position: absolute;
+  }
+  .slogan.active {
+    opacity: 1;
+  }
+  .hidden {
+    display: none;
+  }
+  .coming-soon {
+    opacity: 0;
+    transition: opacity 3s;
+    position: absolute;
+  }
+  .coming-soon.active {
+    opacity: 1;
+  }
+</style>
+
 <Layout title="Well เพื่อนรักษาใจ">
   <main
     style="
@@ -12,16 +34,69 @@ import Layout from "../layouts/Layout.astro";
     "
     class="flex flex-col items-center"
   >
-    <img src="/images/slogan.png" alt="Well Slogan" class="w-80 h-52 mt-52" />
+    <img
+      src="/images/slogan.png"
+      alt="Well Slogan"
+      class="w-52 md:w-80 h-auto mt-52"
+    />
 
-    <h1 class="text-4xl md:text-6xl font-bold text-btn-primary mt-16">
-      พบกันเร็วๆ นี้
-    </h1>
+    <section class="flex flex-col items-center mt-16">
+      <p class="text-lg font-normal text-blue slogan">
+        วันที่คุณรู้สึก <span class="font-semibold text-5xl">”ท้อแท้”</span>
+      </p>
+
+      <p class="font-semibold text-5xl text-blue slogan">“เศร้าใจ”</p>
+
+      <p class="text-lg font-normal text-blue slogan">
+        หาทางออกให้ตัวเอง <span class="font-semibold text-5xl">”ไม่ได้”</span>
+      </p>
+
+      <p class="font-semibold text-5xl text-blue slogan">:(</p>
+
+      <p class="text-lg font-normal text-blue slogan">
+        ให้เราอยู่ <span class="font-semibold text-5xl">เคียงข้างคุณ :)</span>
+      </p>
+    </section>
+
+    <button
+      class="mt-24 bg-btn-primary text-white font-semibold px-8 py-4 rounded-full"
+      >Sign up on the waitlist</button
+    >
 
     <img
       src="/images/coming-soon.png"
       alt="Coming Soon"
-      class="absolute bottom-0 max-h-80 object-contain"
+      class="coming-soon bottom-0 max-h-80 object-contain"
     />
+
+    <script>
+      const headings = document.querySelectorAll(".slogan");
+      let current = 0;
+      headings[current].classList.add("active");
+
+      function showNext() {
+        headings[current].classList.remove("active");
+        current++;
+        if (current >= headings.length) {
+          current = headings.length - 1;
+          headings[current].classList.add("active");
+          document
+            .querySelector("img[alt='Coming Soon']")
+            .classList.add("active");
+          return;
+        }
+        setTimeout(() => {
+          headings[current].classList.add("active");
+          if (current === headings.length - 1) {
+            document
+              .querySelector("img[alt='Coming Soon']")
+              .classList.add("active");
+          }
+          setTimeout(showNext, 3000);
+        }, 2000);
+      }
+
+      setTimeout(showNext, 3000);
+    </script>
   </main>
 </Layout>

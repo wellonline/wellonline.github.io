@@ -40,9 +40,9 @@ import Layout from "../layouts/Layout.astro";
       class="w-52 md:w-80 h-auto mt-52"
     />
 
-    <section class="flex flex-col items-center mt-16">
+    <section class="mt-16 flex flex-col items-center">
       <p class="text-lg font-normal text-blue slogan">
-        วันที่คุณรู้สึก <span class="font-semibold text-5xl">”ท้อแท้”</span>
+        วันที่คุณรู้สึก<span class="font-semibold text-5xl">”ท้อแท้”</span>
       </p>
 
       <p class="font-semibold text-5xl text-blue slogan">“เศร้าใจ”</p>
@@ -95,7 +95,10 @@ import Layout from "../layouts/Layout.astro";
         }, 2000);
       }
 
-      setTimeout(showNext, 3000);
+      setTimeout(() => {
+        headings[current].classList.add("active");
+        setTimeout(showNext, 3000);
+      }, 2000);
     </script>
   </main>
 </Layout>

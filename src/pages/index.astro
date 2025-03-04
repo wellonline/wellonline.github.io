@@ -40,7 +40,7 @@ import Layout from "../layouts/Layout.astro";
       class="w-52 md:w-80 h-auto mt-52"
     />
 
-    <section class="mt-16 flex flex-col items-center">
+    <section class="flex flex-col items-center mt-16">
       <p class="text-lg font-normal text-blue slogan">
         วันที่คุณรู้สึก<span class="font-semibold text-5xl">”ท้อแท้”</span>
       </p>
@@ -73,7 +73,6 @@ import Layout from "../layouts/Layout.astro";
       const headings = document.querySelectorAll(".slogan");
       const comingSoonImage = document.querySelector("img[alt='Coming Soon']");
       let current = 0;
-      headings[current].classList.add("active");
 
       function showNext() {
         headings[current].classList.remove("active");
@@ -95,10 +94,8 @@ import Layout from "../layouts/Layout.astro";
         }, 2000);
       }
 
-      setTimeout(() => {
-        headings[current].classList.add("active");
-        setTimeout(showNext, 3000);
-      }, 2000);
+      headings[current].classList.add("active"); // Show the first slogan immediately
+      setTimeout(showNext, 2000); // Changed from 3000 to 2000
     </script>
   </main>
 </Layout>

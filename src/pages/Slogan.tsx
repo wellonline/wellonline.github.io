@@ -10,25 +10,26 @@ const messages = [
 
 export default function Slogan() {
   const [index, setIndex] = useState(0);
-  const [fade, setFade] = useState(true);
+  const [fadeIn, setFadeIn] = useState(true);
 
   useEffect(() => {
-    if (index < messages.length - 1) {
-      const interval = setInterval(() => {
-        setFade(false);
-        setTimeout(() => {
-          setIndex((prev) => (prev + 1) % messages.length);
-          setFade(true);
-        }, 1000); // Fade out duration
-      }, 4000); // Overall cycle duration
+    const fadeOutDuration = 1000;
+    const displayDuration = 3000;
 
-      return () => clearInterval(interval);
-    }
+    const timeout = setTimeout(() => {
+      setFadeIn(false); // Start fading out
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % messages.length);
+        setFadeIn(true); // Start fading in
+      }, fadeOutDuration);
+    }, displayDuration);
+
+    return () => clearTimeout(timeout);
   }, [index]);
 
   const handleClick = () => {
     window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSc6NWZ5u2-6T6lK41xDDPJOtpTsGtlQolbIi2_vLSV4o3tZBw/viewform?usp=header";
-  }
+  };
 
   return (
     <div className="flex flex-col h-dvh items-center justify-between">
@@ -41,7 +42,7 @@ export default function Slogan() {
 
         <p className="text-lg font-normal text-blue slogan w-full text-center min-h-[80px]">
           <span
-            className={`transition-opacity duration-1000 ease-in-out ${fade ? "opacity-100" : "opacity-0"}`}
+            className={`transition-opacity duration-1000 ease-in-out ${fadeIn ? "opacity-100" : "opacity-0"}`}
             dangerouslySetInnerHTML={{ __html: messages[index] }}
           />
         </p>
@@ -49,11 +50,14 @@ export default function Slogan() {
         <button
           className="bg-btn-primary text-white font-semibold px-8 py-4 rounded-full hover:cursor-pointer"
           onClick={handleClick}
-        >Sign up on the waitlist</button>
+        >
+          Sign up on the waitlist
+        </button>
       </div>
 
       <img
-        className={`transition-opacity duration-1000 ease-in-out ${fade && index === messages.length - 1 ? "opacity-100" : "opacity-0"} object-contain mt-10`}
+        className={`transition-opacity duration-1000 ease-in-out object-contain mt-10 ${fadeIn && index === messages.length - 1 ? "opacity-100" : "opacity-0"
+          }`}
         src="/images/coming-soon.svg"
         alt="Coming Soon"
       />

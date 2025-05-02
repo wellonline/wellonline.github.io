@@ -49,7 +49,7 @@ export default function Slogan() {
         <AnimatePresence mode="wait">
           <motion.span
             key={index}
-            className="text-blue font-normal text-center"
+            className="text-blue font-normal text-center min-h-[80px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

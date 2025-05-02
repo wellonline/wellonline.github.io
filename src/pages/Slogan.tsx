@@ -31,15 +31,15 @@ export default function Slogan() {
   }
 
   return (
-    <>
-      <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col h-dvh items-center justify-between">
+      <div className="flex flex-col items-center justify-center gap-14">
         <img
           src="/images/logo-slogan.svg"
           alt="Well Slogan"
           className="w-52 md:w-80 h-auto mt-40 md:mt-52"
         />
 
-        <p className="text-lg font-normal mt-6 md:mt-14 text-blue slogan w-full text-center">
+        <p className="text-lg font-normal text-blue slogan w-full text-center min-h-[80px]">
           <span
             className={`transition-opacity duration-1000 ease-in-out ${fade ? "opacity-100" : "opacity-0"}`}
             dangerouslySetInnerHTML={{ __html: messages[index] }}
@@ -47,16 +47,16 @@ export default function Slogan() {
         </p>
 
         <button
-          className="bg-btn-primary text-white mt-16 font-semibold px-8 py-4 rounded-full hover:cursor-pointer"
+          className="bg-btn-primary text-white font-semibold px-8 py-4 rounded-full hover:cursor-pointer"
           onClick={handleClick}
         >Sign up on the waitlist</button>
       </div>
 
       <img
-        className={`transition-opacity duration-1000 ease-in-out ${fade && index === messages.length - 1 ? "opacity-100" : "opacity-0"} object-contain`}
+        className={`transition-opacity duration-1000 ease-in-out ${fade && index === messages.length - 1 ? "opacity-100" : "opacity-0"} object-contain mt-10`}
         src="/images/coming-soon.svg"
         alt="Coming Soon"
       />
-    </>
+    </div>
   );
 }

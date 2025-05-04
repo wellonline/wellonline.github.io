@@ -19,8 +19,9 @@ export default function Slogan() {
     intervalRef.current = setInterval(() => {
       setIndex((prev) => {
         const next = prev + 1;
-        if (next >= messages.length - 1 && intervalRef.current) {
-          clearInterval(intervalRef.current);
+        if (next >= messages.length) {
+          if (intervalRef.current) clearInterval(intervalRef.current);
+          return prev; // Stay on last message
         }
         return next;
       });
@@ -68,7 +69,7 @@ export default function Slogan() {
         </button>
       </div>
 
-      <div className="min-h-[30%] w-full md:w-[70%]">
+      <div className="min-h-[30%] w-full md:w-[70%] md:max-h-[30%]">
         <AnimatePresence>
           {index === messages.length - 1 && (
             <motion.img
@@ -79,7 +80,7 @@ export default function Slogan() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 1.6 }}
             />
           )}
         </AnimatePresence>
